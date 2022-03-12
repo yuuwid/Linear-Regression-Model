@@ -6,15 +6,18 @@ class LinearRegression:
         
     def __init__(self, X_train = [], y_train = [], copy = True):
         self.__copy = copy
-        if (copy is True):
+        self.__copy_data(X_train, y_train)
+    
+    def __copy_data(self, X_train, y_train):
+        if self.__copy is True:
             self.__X_train = deepcopy(X_train)
             self.__y_train = deepcopy(y_train)
-    
+        else:
+            self.__X_train = X_train
+            self.__y_train = y_train
     
     def fit_data(self, X_train, y_train):
-        if (self.__copy is True):
-            self.__X_train = deepcopy(X_train)
-            self.__y_train = deepcopy(y_train)
+        self.__copy_data(X_train, y_train)
 
         self.__calc()
         self.__train()
